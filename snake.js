@@ -64,13 +64,23 @@ function Snake(scl, len) {
             return true
         }
 
-        for (let i = this.total-1; i > 0; i--) {
+        for (let i = this.total-1; i >= 0; i--) {
             let pos = this.tail[i]
             if (dist(this.x, this.y, pos.x, pos.y) < 1) {
                 return true
             }
         }
         return false
+    }
+
+    this.showHitbox = function() {
+        for (let i = this.total-1; i >= 0; i--) {
+            let pos = this.tail[i]
+            push()
+            fill(220,200,200)
+            rect(pos.x, pos.y, scl,scl)
+            pop()
+        }
     }
 
     this.generateFoodLoc = function() {

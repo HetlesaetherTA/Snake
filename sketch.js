@@ -20,4 +20,5 @@ function draw() {
   
   
   snake.drawSnake()
+  snake.showHitbox()
 }
