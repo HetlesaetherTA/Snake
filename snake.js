@@ -87,6 +87,7 @@ function Snake(scl, len) {
         this.appleX = floor(random(0,len)) * scl
         this.appleY = floor(random(0,len)) * scl
 
+        // Check that new food loc is not === to tail loc (Might need some optimization)
         for (let i= 0; i < this.total; i++) {
             if(dist(this.x, this.y,this.appleX,this.appleY) < 1) {
                 this.appleX = floor(random(0,len)) * scl
@@ -124,6 +125,33 @@ function Snake(scl, len) {
             this.prevDirection = "VERTICAL"
         } else if (this.y_vol != 0) {
             this.prevDirection = "HORIZONTAL"
+        }
+    }
+
+    this.moveLEFT = function() {
+        if (snake.prevDirection != "VERTICAL"|| snake.total === 0) {
+            snake.x_vol = -1
+            snake.y_vol = 0
+        }
+    }
+
+    this.moveRIGHT = function() {
+        if (snake.prevDirection != "VERTICAL" || snake.total === 0) {
+            snake.x_vol = 1
+            snake.y_vol = 0
+        }
+    }
+
+    this.moveDOWN = function() {
+        if (snake.prevDirection != "HORIZONTAL" || snake.total === 0) {
+            snake.x_vol = 0
+            snake.y_vol = 1
+        }
+    }
+    this.moveUP = function() {
+        if (snake.prevDirection != "HORIZONTAL" || snake.total === 0) {
+            snake.x_vol = 0
+            snake.y_vol = -1
         }
     }
 }
