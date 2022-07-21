@@ -13,10 +13,11 @@ function draw() {
   
   
   snake.update()
-
+  
   if (snake.dead()) {
     snake.restart()
   }
-
+  
+  
   snake.drawSnake()
 }

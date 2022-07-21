@@ -76,7 +76,24 @@ function Snake(scl, len) {
     this.generateFoodLoc = function() {
         this.appleX = floor(random(0,len)) * scl
         this.appleY = floor(random(0,len)) * scl
-    }
+
+        for (let i= 0; i < this.total; i++) {
+            if(dist(this.x, this.y,this.appleX,this.appleY) < 1) {
+                this.appleX = floor(random(0,len)) * scl
+                console.log("reee")
+                this.appleY = floor(random(0,len)) * scl
+                i = 0
+            }
+    
+            try {
+                if (dist(this.tail[i].x, this.tail[i].y, this.appleX, this.appleY) < 1) {
+                    this.appleX = floor(random(0,len)) * scl
+                    this.appleY = floor(random(0,len)) * scl
+                    i = 0
+                }} catch {}
+            }
+        }
+        
     
     this.eat = function () {
         if (dist(this.x, this.y, this.appleX, this.appleY) < 1) {
@@ -84,6 +101,12 @@ function Snake(scl, len) {
             this.total++
             console.log(this.total)
         }
+    }
+
+    this.forceEat = function() {
+        this.generateFoodLoc()
+        this.total++
+        console.log(this.total)
     }
 
     this.avoidVolInverse = function() {
@@ -94,4 +117,3 @@ function Snake(scl, len) {
         }
     }
 }
-

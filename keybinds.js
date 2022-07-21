@@ -1,5 +1,3 @@
-
-
 function keyPressed() {
     if (keyCode === UP_ARROW) {
       if (snake.prevDirection != "HORIZONTAL" || snake.total === 0) {
@@ -21,5 +19,7 @@ function keyPressed() {
           snake.x_vol = 1
           snake.y_vol = 0
       }
+    } else if (keyCode === SHIFT) {
+        snake.forceEat()
     }
 }
