@@ -1,6 +1,8 @@
-function Snake(scl, len) {
-    this.x = (width - scl) / 2
-    this.y = (height - scl) / 2
+function Game(scl, len) {
+    this.gameWidth = 800
+    this.gameHeight = 400
+    this.x = (this.gameWidth - scl) / 2
+    this.y = (this.gameHeight - scl) / 2
     this.x_vol = 0
     this.y_vol = 0
     this.appleX
@@ -30,7 +32,13 @@ function Snake(scl, len) {
         this.avoidVolInverse() 
     }
 
-    this.drawSnake = function() {
+    this.draw = function() {
+        translate(width - this.gameWidth, height - this.gameHeight)
+        push()
+        fill(102)
+        rect(0,0,this.gameWidth, this.gameHeight)
+        pop()
+
         push()
         fill(255)
         rect(this.x, this.y, scl, scl)
@@ -47,8 +55,8 @@ function Snake(scl, len) {
 
     this.restart = function() {
         console.log("Game Over")
-        this.x = (width - scl) / 2
-        this.y = (height - scl) / 2
+        this.x = (this.gameWidth - scl) / 2
+        this.y = (this.gameHeight - scl) / 2
         this.x_vol = 0
         this.y_vol = 0
         this.total = 0
@@ -57,10 +65,10 @@ function Snake(scl, len) {
     }
     
     this.dead = function() {
-        if (this.x < 0 || this.x > width - scl) {
+        if (this.x < 0 || this.x > this.gameWidth - scl) {
             return true
         }
-        if (this.y < 0 || this.y > height - scl) {
+        if (this.y < 0 || this.y > this.gameHeight - scl) {
             return true
         }
 
@@ -73,7 +81,7 @@ function Snake(scl, len) {
         return false
     }
 
-    this.showHitbox = function() {
+    this.drawHitbox = function() {
         for (let i = this.total-1; i >= 0; i--) {
             let pos = this.tail[i]
             push()
@@ -91,7 +99,6 @@ function Snake(scl, len) {
         for (let i= 0; i < this.total; i++) {
             if(dist(this.x, this.y,this.appleX,this.appleY) < 1) {
                 this.appleX = floor(random(0,len)) * scl
-                console.log("reee")
                 this.appleY = floor(random(0,len)) * scl
                 i = 0
             }
@@ -129,29 +136,33 @@ function Snake(scl, len) {
     }
 
     this.moveLEFT = function() {
-        if (snake.prevDirection != "VERTICAL"|| snake.total === 0) {
-            snake.x_vol = -1
-            snake.y_vol = 0
+        if (game.prevDirection != "VERTICAL"|| game.total === 0) {
+            game.x_vol = -1
+            game.y_vol = 0
         }
     }
 
     this.moveRIGHT = function() {
-        if (snake.prevDirection != "VERTICAL" || snake.total === 0) {
-            snake.x_vol = 1
-            snake.y_vol = 0
+        if (game.prevDirection != "VERTICAL" || game.total === 0) {
+            game.x_vol = 1
+            game.y_vol = 0
         }
     }
 
     this.moveDOWN = function() {
-        if (snake.prevDirection != "HORIZONTAL" || snake.total === 0) {
-            snake.x_vol = 0
-            snake.y_vol = 1
+        if (game.prevDirection != "HORIZONTAL" || game.total === 0) {
+            game.x_vol = 0
+            game.y_vol = 1
         }
     }
     this.moveUP = function() {
-        if (snake.prevDirection != "HORIZONTAL" || snake.total === 0) {
-            snake.x_vol = 0
-            snake.y_vol = -1
+        if (game.prevDirection != "HORIZONTAL" || game.total === 0) {
+            game.x_vol = 0
+            game.y_vol = -1
         }
+    }
+
+    this.score = function() {
+        return this.total
     }
 }

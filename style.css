@@ -1,8 +1,17 @@
-html, body {
+html {
   margin: 0;
   padding: 0;
 }
 
+#UI {
+  position: relative;
+}
+
+#game {
+  background: black;
+  margin: 0;
+}
+
 canvas {
-  display: block;
+  
 }

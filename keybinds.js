@@ -1,19 +1,19 @@
 function keyPressed() {
   switch(keyCode) {
     case UP_ARROW:
-      snake.moveUP()
+      game.moveUP()
       break;
     case DOWN_ARROW:
-      snake.moveDOWN()
+      game.moveDOWN()
       break;
     case LEFT_ARROW:
-      snake.moveLEFT()
+      game.moveLEFT()
       break;
     case RIGHT_ARROW:
-      snake.moveRIGHT()
+      game.moveRIGHT()
       break;
     case SHIFT:
-      snake.forceEat()
+      game.forceEat()
     default:
   }
 }

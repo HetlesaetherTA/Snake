@@ -1,24 +1,22 @@
-let snake, scl;
+let game, scl;
 const len = 21
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(800, 600);
   frameRate(10)
-  scl = width/len
-  snake = new Snake(scl, len)
+  scl = 400/len
+  game = new Game(scl, len)
 }
 
 function draw() {
-  background(51);
+  background(52);
+
+  game.update()
   
-  
-  snake.update()
-  
-  if (snake.dead()) {
-    snake.restart()
+  if (game.dead()) {
+    game.restart()
   }
   
   
-  snake.drawSnake()
-  snake.showHitbox()
+  game.draw()
 }
