@@ -13,7 +13,7 @@ function keyPressed() {
       game.moveRIGHT()
       break;
     case SHIFT:
-      game.forceEat()
+      game.setForceEat()
     default:
   }
 }

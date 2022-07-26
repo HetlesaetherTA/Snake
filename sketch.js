@@ -1,22 +1,26 @@
-let game, scl;
-const len = 21
+let game, settings, ui;
 
 function setup() {
   createCanvas(800, 600);
-  frameRate(10)
-  scl = 400/len
-  game = new Game(scl, len)
+  settings = new Settings()
+  game = new Game()
+  ui = new UI()
+  frameRate(settings.speed())
 }
 
 function draw() {
   background(52);
 
-  game.update()
-  
-  if (game.dead()) {
-    game.restart()
+  ui.startingScreen()
+  if (game.running()) {
+    game.draw()
+    game.update()
+    
+    if (game.dead()) {
+      game.restart()
+    }
+  } else {
+    game.updateSettings(settings.speed(),settings.size())
   }
   
-  
-  game.draw()
 }
