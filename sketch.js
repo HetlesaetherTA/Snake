@@ -1,7 +1,8 @@
 let game, settings, ui;
 
 function setup() {
-  createCanvas(800, 600);
+  createCanvas(810, 610);
+  // settings sliders are rendered automatically by Settings() function
   settings = new Settings()
   game = new Game()
   ui = new UI()
@@ -9,9 +10,11 @@ function setup() {
 }
 
 function draw() {
-  background(52);
+  background(68,155,88);
+  ui.draw()
+  ui.startingScreen(game.getGameWidth(), game.getGameHeight())
+  settings.draw()
 
-  ui.startingScreen()
   if (game.running()) {
     game.draw()
     game.update()

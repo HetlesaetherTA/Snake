@@ -1,10 +1,11 @@
 function Game() {
+    let background = loadImage("img/gameBackground.png")
     this.len = settings.size()
     this.gameWidth = 800
     this.gameHeight = 400
     this.scl = this.gameHeight / this.len
-    this.x = int(this.len/2)
-    this.y = int(this.len/2)
+    this.x = int(this.len * (this.gameWidth / this.gameHeight) /2)
+    this.y = int(this.len / 2)
     this.x_vol = 0
     this.y_vol = 0
     this.appleX
@@ -18,8 +19,6 @@ function Game() {
         frameRate(speed)
         this.len = size
         this.scl = 400 / size
-        console.log(this.len)
-        console.log(this.scl)
     }
 
     this.update = function() {
@@ -45,10 +44,11 @@ function Game() {
 
 
     this.draw = function() {
-        translate(width - this.gameWidth, height - this.gameHeight)
+        translate(width - this.gameWidth - 5, height - this.gameHeight - 5)
         push()
-        fill(102)
-        rect(0,0,this.gameWidth, this.gameHeight)
+        stroke(40)
+        rect(0, 0, this.gameWidth, this.gameHeight)
+        image(background, 0, 0, this.gameWidth, this.gameHeight)
         pop()
 
         push()
@@ -67,16 +67,12 @@ function Game() {
 
     this.running = function() {
         if (this.x_vol != 0 || this.y_vol != 0){
-            console.log("alive")
             return true
         }
-        console.log("dead")
-
     }
 
     this.restart = function() {
-        console.log("Game Over")
-        this.x = int(this.len / 2)
+        this.x = int(this.len * (this.gameWidth / this.gameHeight) /2)
         this.y = int(this.len / 2)
         this.x_vol = 0
         this.y_vol = 0
@@ -142,8 +138,6 @@ function Game() {
             this.generateFoodLoc()
             this.forceEat = false
             this.total++
-            console.log(this.total)
-            console.log(this.tail)
         }
     }
 
@@ -184,5 +178,13 @@ function Game() {
 
     this.score = function() {
         return this.total
+    }
+
+    this.getGameHeight = function() {
+        return this.gameHeight
+    }
+
+    this.getGameWidth = function() {
+        return this.gameWidth
     }
 }
