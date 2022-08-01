@@ -11,10 +11,11 @@ function setup() {
 
 function draw() {
   background(68,155,88);
-  ui.draw()
   ui.startingScreen(game.getGameWidth(), game.getGameHeight())
+  ui.drawTitle()
   settings.draw()
-
+  ui.drawScore(game.score())
+  
   if (game.running()) {
     game.draw()
     game.update()

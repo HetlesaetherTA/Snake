@@ -3,11 +3,8 @@ html {
   padding: 0;
 }
 
-#UI {
-  position: relative;
-}
-
-#game {
-  background: black;
-  margin: 0;
+canvas {
+  position: absolute; 
+  left: 50%; 
+  transform: translate(-50%);
 }
